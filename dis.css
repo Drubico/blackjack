@@ -1,5 +1,16 @@
 body{
-    background-color: black;
+    background-color:darkgrey;
     text-align: center;
-    color: blanchedalmond;
+    color: white;
+    font-size: 2em;
+    background-image: url(https://image.freepik.com/foto-gratis/fichas-poquer-colores-sobre-fondo-verde_23-2147937919.jpg);;
+    background-size: cover;
+}
+#tablero{
+    margin-left: 2em;
+    margin-right: 2em;
+
+}
+tr>td{
+    padding: 0.4em;
 }
