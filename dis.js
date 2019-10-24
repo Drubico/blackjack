@@ -92,10 +92,24 @@ btn.addEventListener("click",()=>{
         resultado.textContent=suma
     }
     else if(suma==31 || suma==21){
-        window.alert("Ganaste!");
+        if (confirm("Felicidades as ganado !!!! \n Jugar de nuevo?")) {
+            window.setInterval(  location.reload(true),300000)
+
+        } else {
+          //Mostrar estadisticas!
+        }
+
     }
     else{
-        window.alert("perdiste!");            
+        var txt;
+        if (confirm("Lo sentimos perdiste !!!! \n Jugar de nuevo?")) {
+            window.setInterval(  location.reload(true),300000)
+
+        } else {
+          //Mostrar estadisticas!
+        }
+      ;
+            
     }
    
 })
