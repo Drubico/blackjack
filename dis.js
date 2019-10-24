@@ -1,10 +1,21 @@
 let btn = document.querySelector("#baraja")
 let padre=document.querySelector("#padre")
 let resultado=document.querySelector('#Resultado')
-
+let bienvenida=document.querySelector('#bienvenida')
 let suma=0;    
 var repImage;   
+function nombre(){
+    var txt;
+    var person = prompt("Hola ,como Te llamas? ");
+    if (person == null || person == "") {
+      person = "Legolas";
+      bienvenida.textContent="Bienvenido al Casino "+person
+    } else {
+        bienvenida.textContent="Bienvenido al Casino "+person
 
+    }
+   
+}
 function myFunction() { 
     var retvalue = Math.floor((Math.random() * 10) + 1);
    
