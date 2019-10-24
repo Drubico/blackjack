@@ -14,3 +14,7 @@ body{
 tr>td{
     padding: 0.4em;
 }
+#tabla-resultado{
+    margin: 0em;
+    padding: 0%;
+}
