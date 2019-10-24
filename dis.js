@@ -7,14 +7,41 @@ var repImage;
 function nombre(){
     var txt;
     var person = prompt("Hola ,como Te llamas? ");
-    if (person == null || person == "") {
-      person = "Legolas";
-      bienvenida.textContent="Bienvenido al Casino "+person
-    } else {
-        bienvenida.textContent="Bienvenido al Casino "+person
-
+    if(suma>=21){
+        suma=0
+        if (person == null || person == "") {
+            window.setInterval(  location.reload(true),300000)
+            person = "Legolas";
+            bienvenida.textContent="Bienvenido al Casino "+person
+            primeramano()
+            primeramano()
+        } else {
+            window.setInterval(  location.reload(true),300000)
+            bienvenida.textContent="Bienvenido al Casino "+person
+            primeramano()
+            primeramano()
+        }
+    }else{
+        if (person == null || person == "") {
+            person = "Legolas";
+            bienvenida.textContent="Bienvenido al Casino "+person
+            primeramano()
+            primeramano()
+        } else {
+            bienvenida.textContent="Bienvenido al Casino "+person
+            primeramano()
+            primeramano()
+        }
     }
    
+   
+}
+function primeramano(){
+    document.getElementById('baraja').src=randombaraja()
+    var table = document.getElementById("tablero");
+    var cell1 = padre.insertCell(-1);
+    cell1.innerHTML = myFunction()
+    resultado.textContent=suma
 }
 function myFunction() { 
     var retvalue = Math.floor((Math.random() * 10) + 1);
@@ -95,14 +122,14 @@ function randombaraja() {
 }
 };
 btn.addEventListener("click",()=>{
-    if(suma<31){
+    if(suma<21){
         document.getElementById('baraja').src=randombaraja()
         var table = document.getElementById("tablero");
         var cell1 = padre.insertCell(-1);
         cell1.innerHTML = myFunction()
         resultado.textContent=suma
     }
-    else if(suma==31 || suma==21){
+    else if(suma==21){
         if (confirm("Felicidades as ganado !!!! \n Jugar de nuevo?")) {
             window.setInterval(  location.reload(true),300000)
 
