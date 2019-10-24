@@ -54,10 +54,43 @@ function myFunction() {
     }
   
     
+};
+function randombaraja() {
+    var randombaraja = Math.floor((Math.random() * 6) + 1);
+    switch (randombaraja){
+        case 1:
+            Imagebaraja ='images/JPEG/barajas/blue_back.jpg'
+            return Imagebaraja;
+            break;
+        case 2:
+            Imagebaraja ='images/JPEG/barajas/Gray_back.jpg' 
+            return Imagebaraja;
+            break;   
+        case 3:
+            Imagebaraja ='images/JPEG/barajas/Green_back.jpg' 
+            return Imagebaraja;
+            break;    
+        case 4:
+            Imagebaraja ='images/JPEG/barajas/purple_back.jpg' 
+            return Imagebaraja;
+            break;    
+        case 5:
+            Imagebaraja ='images/JPEG/barajas/Red_back.jpg' 
+            return Imagebaraja;
+            break;   
+        case 6:
+            Imagebaraja ='images/JPEG/barajas/Yellow_back.jpg'
+            return Imagebaraja;
+            break;         
+        
+        default:
+            return NO
+  
 }
+};
 btn.addEventListener("click",()=>{
    
-    document.getElementById('imagenresult').src="./images/JPEG/Trebol/10C.jpg"
+    document.getElementById('baraja').src=randombaraja()
     var table = document.getElementById("tablero");
     var cell1 = padre.insertCell(-1);
     cell1.innerHTML = myFunction()
