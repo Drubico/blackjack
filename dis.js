@@ -5,6 +5,14 @@ let bienvenida=document.querySelector('#bienvenida')
 let suma=0;    
 var repImage;   
 let tablero=document.querySelector('#tabla-juego')
+let mazo=[];
+
+function CrearMazo(){
+    for (i=1;i<53;i++){
+        mazo[i]=i
+    }
+}
+CrearMazo()
 
 function nombre(){
     var txt;
@@ -15,8 +23,9 @@ function nombre(){
             window.setInterval(  location.reload(true),300000)
             person = "Legolas";
             bienvenida.textContent="Bienvenido al Casino "+person
-            tablero.style.visibility == 'inheret'
-           
+            if (window.getComputedStyle(tablero).visibility === "hidden") {
+                tablero.style.visibility = "visible";
+              }
               
             primeramano()
             primeramano()
@@ -24,7 +33,10 @@ function nombre(){
         } else {
             window.setInterval(  location.reload(true),300000)
             bienvenida.textContent="Bienvenido al Casino "+person
-            tablero.style.visibility == 'inheret'
+            if (window.getComputedStyle(tablero).visibility === "hidden") {
+                tablero.style.visibility = "visible";
+              }
+              
 
             primeramano()
             primeramano()
@@ -33,14 +45,20 @@ function nombre(){
         if (person == null || person == "") {
             person = "Legolas";
             bienvenida.textContent="Bienvenido al Casino "+person
-            tablero.style.visibility == 'inheret'
+            if (window.getComputedStyle(tablero).visibility === "hidden") {
+                tablero.style.visibility = "visible";
+              }
+              
 
             primeramano()
             primeramano()
 
         } else {
             bienvenida.textContent="Bienvenido al Casino "+person
-            tablero.style.visibility == 'inheret'
+            if (window.getComputedStyle(tablero).visibility === "hidden") {
+                tablero.style.visibility = "visible";
+              }
+              
 
             primeramano()
             primeramano()
@@ -58,11 +76,14 @@ function primeramano(){
     resultado.textContent=suma
 }
 function myFunction() { 
-    var retvalue = Math.floor((Math.random() * 10) + 1);
-   
+    var retvalue = Math.floor((Math.random() * mazo.length) + 0);
+    //if()
     //Treboles
+    console.log(retvalue) 
+
         switch (retvalue){
             case 1:
+                
                 repImage ="<img src='images/JPEG/Trebol/AC.jpg' width='100' height='150'>";
                 suma-=-1;
                 return repImage;    
@@ -103,38 +124,13 @@ function myFunction() {
                 suma-=-10;
                 return repImage;
             default:
-                return NO
+                repImage ="<img src='images/JPEG/Trebol/10C.jpg' width='100' height='150'>";
+                return repImage;
     }
   
     
 };
-function randombaraja() {
-    var randombaraja = Math.floor((Math.random() * 6) + 1);
-    switch (randombaraja){
-        case 1:
-            Imagebaraja ='images/JPEG/barajas/blue_back.jpg'
-            return Imagebaraja;
-        case 2:
-            Imagebaraja ='images/JPEG/barajas/Gray_back.jpg' 
-            return Imagebaraja;
-        case 3:
-            Imagebaraja ='images/JPEG/barajas/Green_back.jpg' 
-            return Imagebaraja;
-        case 4:
-            Imagebaraja ='images/JPEG/barajas/purple_back.jpg' 
-            return Imagebaraja;
-        case 5:
-            Imagebaraja ='images/JPEG/barajas/Red_back.jpg' 
-            return Imagebaraja;
-        case 6:
-            Imagebaraja ='images/JPEG/barajas/Yellow_back.jpg'
-            return Imagebaraja;
-        
-        default:
-            return NO
-  
-}
-};
+
 btn.addEventListener("click",()=>{
     if(suma<21){
         document.getElementById('baraja').src=randombaraja()
@@ -168,3 +164,30 @@ btn.addEventListener("click",()=>{
 
 
 
+function randombaraja() {
+    var randombaraja = Math.floor((Math.random() * 6) + 1);
+    switch (randombaraja){
+        case 1:
+            Imagebaraja ='images/JPEG/barajas/blue_back.jpg'
+            return Imagebaraja;
+        case 2:
+            Imagebaraja ='images/JPEG/barajas/Gray_back.jpg' 
+            return Imagebaraja;
+        case 3:
+            Imagebaraja ='images/JPEG/barajas/Green_back.jpg' 
+            return Imagebaraja;
+        case 4:
+            Imagebaraja ='images/JPEG/barajas/purple_back.jpg' 
+            return Imagebaraja;
+        case 5:
+            Imagebaraja ='images/JPEG/barajas/Red_back.jpg' 
+            return Imagebaraja;
+        case 6:
+            Imagebaraja ='images/JPEG/barajas/Yellow_back.jpg'
+            return Imagebaraja;
+        
+        default:
+            return NO
+  
+}
+};
