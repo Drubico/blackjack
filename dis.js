@@ -4,6 +4,8 @@ let resultado=document.querySelector('#Resultado')
 let bienvenida=document.querySelector('#bienvenida')
 let suma=0;    
 var repImage;   
+let tablero=document.querySelector('#tabla-juego')
+
 function nombre(){
     var txt;
     var person = prompt("Hola ,como Te llamas? ");
@@ -13,11 +15,17 @@ function nombre(){
             window.setInterval(  location.reload(true),300000)
             person = "Legolas";
             bienvenida.textContent="Bienvenido al Casino "+person
+            tablero.style.visibility == 'inheret'
+           
+              
             primeramano()
             primeramano()
+
         } else {
             window.setInterval(  location.reload(true),300000)
             bienvenida.textContent="Bienvenido al Casino "+person
+            tablero.style.visibility == 'inheret'
+
             primeramano()
             primeramano()
         }
@@ -25,14 +33,20 @@ function nombre(){
         if (person == null || person == "") {
             person = "Legolas";
             bienvenida.textContent="Bienvenido al Casino "+person
+            tablero.style.visibility == 'inheret'
+
             primeramano()
             primeramano()
+
         } else {
             bienvenida.textContent="Bienvenido al Casino "+person
+            tablero.style.visibility == 'inheret'
+
             primeramano()
             primeramano()
         }
     }
+
    
    
 }
