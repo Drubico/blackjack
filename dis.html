@@ -11,28 +11,44 @@
 </head>
 
 <body>
-    <div id="tabla-bienvedida">
+    <div id="Grid">
+
+        <div id="tabla-bienvedida">
             <h1 id="bienvenida">Bienvenido al Casino <span id="nombre"></span></h1>
-            <input type="button" id="empezar">
-    </div>
-  
-    <div id="tabla-juego">
-        <div>
-            <table id="tablero">
-                <tr id="padre">
-                    <td>
-                        <img src="./images/JPEG/barajas/purple_back.jpg" alt="baraja" id="baraja" height="150"
-                            width="100">
-                    </td>
-
-                </tr>
-            </table>
+            <input type="button" id="empezar" value="Empezar">
         </div>
 
-        <div id="tabla-resultado">
-            <h1>Resultado:</h1>
-            <h1 id="Resultado" value="0">0</h1>
+        <div id="tabla-juego">
+            <div>
+                <table id="tablero">
+                    <tr id="padre">
+                        <td>
+                            <img src="./images/JPEG/barajas/purple_back.jpg" alt="baraja" id="baraja" height="150"
+                                width="100">
+                        </td>
+
+                    </tr>
+                </table>
+            </div>
+
+            <div id="tabla-resultado">
+                <h1>Resultado:</h1>
+                <h1 id="Resultado" value="0">0</h1>
+            </div>
+
         </div>
+
+        <div id="tabla-probabilidad">
+            <h3 id="cartas">Cartas : 0</h3>
+            <h3>Probabilidad</h3>
+            <h5>Ganar en la siguiente ronda</h5>
+            <p id="GanarNext">0</p>
+            <h5>Pasarse en la siguiente ronda</h5>
+            <p id="PerderNext">0</p>
+            <h5>Ganar por cartas</h5>
+        </div>
+
 </body>
 <script src="./script.js"></script>
+
 </html>

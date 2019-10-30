@@ -3,7 +3,7 @@ body{
     text-align: center;
     color: white;
     font-size: 2em;
-    background-image: url(https://image.freepik.com/foto-gratis/fichas-poquer-colores-sobre-fondo-verde_23-2147937919.jpg);;
+    background-image: url(./images/JPEG/fondo/fondo2.jpg);;
     background-size: cover;
 }
 #tablero{
@@ -11,6 +11,11 @@ body{
     margin-right: 2em;
 
 }
+
+#bienvenida{
+    margin: 0;
+}
+
 tr>td{
     padding: 0.4em;
 }
@@ -20,4 +25,33 @@ tr>td{
 }
 #tabla-juego{
     visibility: hidden;
+    grid-area: 2/1/span 4/span 4;
+
+}
+#Grid{
+    display: grid;
+    grid-template-columns: repeat(5,20%);
+    grid-template-rows: repeat(5,20%);
+}
+
+#tabla-bienvedida{
+    grid-column: 1/span 4;
+    display:flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+
+
+}
+#tabla-probabilidad{
+    grid-row: auto/span 4;
+    border: solid black;
+}
+
+#empezar{
+    border-radius: 2em;
+    background: transparent;
+    color: wheat;
+    font-size: 0.8em ;
+    padding: 0.4em 1.3em;
 }
