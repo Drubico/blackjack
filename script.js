@@ -1,24 +1,27 @@
-/*              VARIABLES               */
-//Guarda  los botones
+/************************************************************************************************** */            
+                            /*              VARIABLES               */
+/************************************************************************************************** */            
+                //Guarda  los botones
 let btn_carta = document.querySelector("#baraja")
 let btn_empezar = document.querySelector('#empezar')
-//div y tb nuevos
+                //div y tb nuevos
 let div_tablero=document.querySelector('#tabla-juego')
 let tb_padre=document.querySelector("#padre")
-//Textos que cambian
+                //Textos que cambian
 let txt_resultado=document.querySelector('#Resultado')
 let txt_bienvenida=document.querySelector('#bienvenida')
 let txt_nombre = document.querySelector('#nombre')
 let txt_cartasresult = document.querySelector('#cartas')
 let txt_ganarNext=document.querySelector('#GanarNext')
 let txt_perderNext=document.querySelector('#PerderNext')
+let txt_vivirNext=document.querySelector('#vivirNext')
 let txt_conqueganas=document.querySelector('#Falta')
-//Variables internas
+                //Variables internas
 let suma=0;    
 let suma_cartas=0;
 var repImage;  
 var nueva ;
-//Listas
+                //Listas
 let ases =[]
 let manoActual = [];
 let cartas = [
@@ -26,52 +29,194 @@ let cartas = [
     "AD","2D","3D","4D","5D","6D","7D","8D","9D","10D","JD","QD","KD",
     "AH","2H","3H","4H","5H","6H","7H","8H","9H","10H","JH","QH","KH",
     "AS","2S","3S","4S","5S","6S","7S","8S","9S","10S","JS","QS","KS"]
-    
-/*          Calculos de probabilidad            */
-
-
+/************************************************************************************************** */            
+                        /*          Calculos de probabilidad            */
+/************************************************************************************************** */            
+//Muestra la probabilidad de ganar en la siguiente ronda
 let ganarnext=()=>
 {
-    txt_ganarNext.textContent =(retornavalor())+"/"+ (cartas.length) +" = "+(retornavalor()/cartas.length).toFixed(4)
-
+    //retornarvalor->   es los casos favorables
+    //cartas.lenght->   son los casos posibles(cartas que aun no salen)
+    //tofixed muestra o redondea 4 decimales
+    txt_ganarNext.textContent =(casosfavorables_ganar_siguiente())+"/"+ (cartas.length) +
+                            " = "+((casosfavorables_ganar_siguiente()/cartas.length).toFixed(2)*100)+"%"
 }
+//Muestra  las probabilidades de perder en la siguiente ronda
 let perdernext=()=>
 {
-    txt_perderNext.textContent = (cartas.length)+"/"+("cartas extra ")
+    //casosfavorables_Noseguirvivo cuenta el numero de cartas que al sumar con lo que tengo se pasaria de 21
+    //fixed redondea a 2 decimales
+    txt_perderNext.textContent =(casosfavorables_Noseguirvivo())+"/"+ (cartas.length) +
+    " = "+((casosfavorables_Noseguirvivo()/cartas.length).toFixed(2)*100)+"%"
 }
+let seguirnext=()=>{
+    txt_vivirNext.textContent =(casosfavorables_Seguirvivo())+"/"+ (cartas.length) +
+    " = "+((casosfavorables_Seguirvivo()/cartas.length).toFixed(2)*100)+"%"
+}
+/************************************************************************************************** */
+/************************************************************************************************** */
 //Retorna la cantidad de elementos cuya suma es nesaria para llegar 21 
-let retornavalor=()=>{
+let casosfavorables_ganar_siguiente=()=>{
+    //cont cuentas las ocaciones que salen numeros con los que puedo ganar
     cont=0;
+    //necesito es el numero con el que ganaria en la proxima ronda
     let necesito=21-suma
+    //cambia el texto de las cartas que se necesitan para ganar
     txt_conqueganas.textContent ='Conque carta ganas? : '+ necesito
+    //recorre el mazo(lista con todas las cartas) y guarda en element el valor que trae en la iteracion
     cartas.forEach(element => {
+        //actual es el valor que trae en la iteracion del mazo y substring divide el valor y solo queda la primera letra 
+        // por ejemplo las cartas tienen el nombre de AC o AD y substring corta y deja solo A
+        actual=element.substring(0,1)
+        //Los if preguntan ocaciones especiales
+            //si necesitas 10 para ganar hay 4 tipos de cartas que da esa suma 
         if(necesito==10){
-            if ("1"==element.substring(0,1)||"J"==element.substring(0,1)||"Q"==element.substring(0,1)||"K"==element.substring(0,1)){
+            //si necesita 10 solo lo puede dar los siguientes indices 1 (substring de 10 ),J,Q,K
+            if (actual=="1"||actual=="J"||actual=="Q"||actual=="K")
+            {
+                //suma al contador una iteracion
+                //cont-=-1 es lo mismo que cont +=1
                 cont-=-1;
             }
         }
+        //si se necesita 1 o se necesita 11 el As es el que cumple con eso
         else if(necesito==1 || necesito==11){
-            if ("A"==element.substring(0,1)){
+            //Si la carta es A se suma al iterador
+            if (actual=="A"){
                 cont-=-1;
             }
         }
+        //si lo que necesito es mayor a 11 (no se puede en una sola carta )
+        //regresa un cero porque no exite esa probabilidad
         else if(necesito>11){
             cont=0
         }
+        //si el elemento no tiene un requisito especial
         else{
-                if (necesito==element.substring(0,1)){
+                //se pregunta si lo que se necesita es igual ala iteracion en el mazo y se suma la iteracion si asi es 
+                if (necesito==parseInt(actual)){
                     cont-=-1;
             }
         }
     });
+    //retorna todas las ocurrencias que encontro
+    return cont
+}
+let casosfavorables_Noseguirvivo=()=>{
+    //contador de ocurrencias
+    cont=0;
+    //el elemento de iteracion 
+    let subelement;
+    // variable que determina si la suma con un elemento que recorre la lista se pasa de 21
+    let muerte ;
+    //recorre la baraja
+    cartas.forEach(element => 
+    {
+        //actual es la primera letra o numero de la palabra en en la baraja que es lo que se necesita
+        actual=element.substring(0,1)
+        //pregunta si la iteracion trae un As
+        if(actual=="A")
+        {
+            //se toma el as como un 1 
+            subelement=1
+            //muerte es el resultado que daria si se tomara el elemento dela iteracion actual
+            muerte=suma+subelement
+            //si muerte es mayor a 21 significa que perderia si se usara ese elemento y es lo que buscamos
+            if(muerte>21)
+            { 
+                //Se suma uno ala probabilidad de morir
+                cont-=-1
+            }
+        }
+        // si actual es igual a 1 o J o Q o K  significa que va a sumar 10 por eso se toma como un caso especial
+        else if (actual=="1"||actual=="J"||actual=="Q"||actual=="K")
+        {
+            //se toma como 10 el resultado de la iteracion
+            subelement=10
+            //muerte es la suma que se tiene actualmente y se le suba el elemento 
+            muerte=suma+subelement
+            //si muerte es mayor a 21 significa que perderia si se usara ese elemento y es lo que buscamos
+            if(muerte>21) 
+            {
+                cont-=-1
+            }
+        }
+        //si no es un caso especial se toma como el numero que es
+        else
+        {
+            //a suma se le adiciona lo que trae el subindice
+            muerte=suma+parseInt(element)
+            //si se pasa cuenta como una probabilidad de muerte
+            if(muerte>21) 
+            {
+                cont-=-1
+            }
+        }
+    }
+    );
+    //retorna todas las probabilidades de muerte
     return cont
 }
 
+let casosfavorables_Seguirvivo=()=>{
+    //contador de ocurrencias
+    cont=0;
+    //el elemento de iteracion 
+    let subelement;
+    // variable que determina si la suma con un elemento que recorre la lista es menor a 21
+    let vivir ;
+    //recorre la baraja
+    cartas.forEach(element => 
+    {
+        //actual es la primera letra o numero de la palabra en en la baraja que es lo que se necesita
+        actual=element.substring(0,1)
+        //pregunta si la iteracion trae un As
+        if(actual=="A")
+        {
+            //se toma el as como un 1 
+            subelement=1
+            //vivir es el resultado que daria si se tomara el elemento dela iteracion actual
+            vivir=suma+subelement
+            //si vivir es menor a 21 significa que podria seguir jugando
+            // si se usara ese elemento y es lo que buscamos
+            if(vivir<=21)
+            { 
+                //Se suma uno ala probabilidad de seguir jugando
+                cont-=-1
+            }
+        }
+        // si actual es igual a 1 o J o Q o K  significa que va a sumar 10 por eso se toma como un caso especial
+        else if (actual=="1"||actual=="J"||actual=="Q"||actual=="K")
+        {
+            //se toma como 10 el resultado de la iteracion
+            subelement=10
+            vivir=suma+subelement
+            if(vivir<=21) 
+            {
+                cont-=-1
+            }
+        }
+        //si no es un caso especial se toma como el numero que es
+        else
+        {
+            //a suma se le adiciona lo que trae el subindice
+            vivir=suma+parseInt(element)
+            if(vivir<=21) 
+            {
+                cont-=-1
+            }
+        }
+    }
+    );
+    //retorna todas las probabilidades de seguir vivo
+    return cont
+}
 
 /*          Obtener una carta               */
 
 let getCard = ()=> 
 { 
+    console.log(cartas)
     //da un numero random
     var rdm_card = Math.floor((Math.random() * cartas.length));
     //regresa la poscicion del elemento
@@ -137,6 +282,7 @@ btn_empezar.addEventListener("click", ()=>
         start()
         perdernext()
         ganarnext()
+        seguirnext()
         }
 })
 
@@ -147,6 +293,7 @@ btn_carta.addEventListener("click", ()=>
         primeramano()
         perdernext()
         ganarnext()
+        seguirnext()
         if(suma==21 || (suma_cartas==5 && suma<21) || (suma_cartas==2 && suma == 11))
         {
             resultado("Ganaste")

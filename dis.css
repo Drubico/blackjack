@@ -5,19 +5,14 @@ body{
     font-size: 1.5em;
     background-image: url(./images/JPEG/fondo/fondo2.jpg);;
     background-size: cover;
-    
 }
 #tablero{
     margin-left: 2em;
     margin-right: 2em;
-
 }
-
-
 #bienvenida{
     margin: 0;
 }
-
 tr>td{
     padding: 0.4em;
 }
