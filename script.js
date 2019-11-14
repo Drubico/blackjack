@@ -87,11 +87,13 @@ btn_carta.addEventListener("click", ()=>
 //boton de informacion de los espacios
 btn_info.addEventListener("click", ()=>
 {
-    if(info==true){
+    if(info==true)
+    {
         div_info.style.visibility = 'hidden'
         info=false
     }
-    else{
+    else
+    {
         div_info.style.visibility = 'visible'
         info=true
     }
@@ -147,15 +149,15 @@ let casosfavorables_ganar_siguiente=()=>
     { //si necesita 10 solo lo puede dar los siguientes indices 1 (substring de 10 ),J,Q,K
         if (actual=="1"||actual=="J"||actual=="Q"||actual=="K")
         {//suma al contador una iteracion
-        //cont-=-1 es lo mismo que cont +=1
-        cont-=-1;
+            //cont-=-1 es lo mismo que cont +=1
+            cont-=-1;
         }
     }//si se necesita 1 o se necesita 11 el As es el que cumple con eso
     else if(necesito==1 || necesito==11)
     {//Si la carta es A se suma al iterador
         if (actual=="A")
         {
-        cont-=-1;
+            cont-=-1;
         }
     }
     //si lo que necesito es mayor a 11 (no se puede en una sola carta )
@@ -257,9 +259,9 @@ let casosfavorables_Seguirvivo=()=>
             // si se usara ese elemento y es lo que buscamos
             if(vivir<=21)
             { 
-            list_espacio_ganar.push(element)
-            //Se suma uno ala probabilidad de seguir jugando
-            cont-=-1
+                list_espacio_ganar.push(element)
+                //Se suma uno ala probabilidad de seguir jugando
+                cont-=-1
             }
         }
         // si actual es igual a 1 o J o Q o K  significa que va a sumar 10 por eso se toma como un caso especial
@@ -279,8 +281,8 @@ let casosfavorables_Seguirvivo=()=>
             vivir=suma+parseInt(element)
             if(vivir<=21) 
             {
-            list_espacio_ganar.push(element)
-            cont-=-1
+                list_espacio_ganar.push(element)
+                cont-=-1
             }
         }
     });
