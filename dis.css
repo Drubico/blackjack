@@ -41,14 +41,17 @@ tr>td{
 
 }
 #tabla-probabilidad{
-    grid-row: auto/span 4;
+    grid-row: auto/span 5;
     border: solid black;
 }
 
-#empezar{
+#empezar,#info{
     border-radius: 2em;
     background: transparent;
     color: wheat;
     font-size: 0.8em ;
     padding: 0.4em 1.3em;
+}
+#Espacios-div{
+    visibility: hidden;
 }
