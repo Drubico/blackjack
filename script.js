@@ -8,6 +8,7 @@ let btn_info        =   document.querySelector('#info')
                                 /*              DIV Y TABLA               */
 let div_info        =   document.querySelector('#Espacios-div')
 let div_tablero     =   document.querySelector('#tabla-juego')
+let div_probabilidad=   document.querySelector('#div-probabilidad')
 let tb_padre        =   document.querySelector("#padre")
                                 /*              TEXTOS               */
 let txt_resultado   =   document.querySelector('#Resultado')
@@ -16,13 +17,8 @@ let txt_nombre      =   document.querySelector('#nombre')
 let txt_cartasresult=   document.querySelector('#cartas')
 let txt_ganarNext   =   document.querySelector('#GanarNext')
 let txt_perderNext  =   document.querySelector('#PerderNext')
-let txt_vivirNext   =   document.querySelector('#vivirNext')
+let txt_ganarcualquiera   =   document.querySelector('#GanarCualquiera')
 let txt_conqueganas =   document.querySelector('#Falta')
-                                /*              ESPACIOS               */
-let txt_espacio_barajaActual    =   document.querySelector('#espacio_baraja_actual')
-let txt_espacio_muestral        =   document.querySelector('#espacio_espacio_muestral')
-let txt_espacio_perder          =   document.querySelector('#espacio_perder')
-let txt_espacio_ganar           =   document.querySelector('#espacio_ganar')
                                 /*              VARIABLES INTERNAS               */
 let suma        =   0;    
 let suma_cartas =   0;
@@ -59,15 +55,19 @@ btn_empezar.addEventListener("click", ()=>
             }
         }
         //hace  que el boton sea oculto porque se ocupa solo para empezar
-        btn_empezar.style.visibility = 'hidden'
         //comienzo que hace visible el tablero de juego
         div_tablero.style.visibility = 'visible'
+        div_probabilidad.style.visibility = 'visible'
+        btn_info.style.visibility='visible'
+
         //al comenzar se dan 2 cartas con primera mano
         nuevaCarta()
         nuevaCarta()
         //puede que en la primera mano se gane asi que se pregunta
         resultado()
         actualizaprobabilidades()
+        btn_empezar.style.visibility = 'hidden'
+
     }
 })
 //Boton que da una nueva carta al mazo actual
@@ -120,9 +120,9 @@ let perdernext=()=>
     " = "+((casosfavorables_Noseguirvivo()/cartas.length).toFixed(2)*100)+"%"
 }
 /*              Muestra las probabilidades de seguir vivo en la siguiente ronda               */
-let seguirnext=()=>{
-    txt_vivirNext.textContent =(casosfavorables_Seguirvivo())+"/"+ (cartas.length) +
-    " = "+((casosfavorables_Seguirvivo()/cartas.length).toFixed(2)*100)+"%"
+let GanarCualquiera=()=>{
+    txt_ganarcualquiera.textContent =(casosfavorables_GanarCualquiera())+"/"+ (cartas.length) +
+    " = "+((casosfavorables_GanarCualquiera()/cartas.length).toFixed(2)*100)+"%"
 }
 /************************************************************************************************** */
 /************************************************************************************************** */            
@@ -137,7 +137,7 @@ let casosfavorables_ganar_siguiente=()=>
     //necesito es el numero con el que ganaria en la proxima ronda
     let necesito=21-suma
     //cambia el texto de las cartas que se necesitan para ganar
-    txt_conqueganas.textContent ='Conque carta ganas? : '+ necesito
+    txt_conqueganas.textContent ='Buscamos: '+ necesito
     //recorre el mazo(lista con todas las cartas) y guarda en element el valor que trae en la iteracion
     cartas.forEach(element => {
     //actual es el valor que trae en la iteracion del mazo y substring divide el valor y solo queda la primera letra 
@@ -237,7 +237,7 @@ let casosfavorables_Noseguirvivo=()=>
     return cont
 }
  /*         Calculo de Casos Favorables de seguir vivo en el siguiente turno            */
-let casosfavorables_Seguirvivo=()=>
+let casosfavorables_GanarCualquiera=()=>
 {
     //contador de ocurrencias
     cont=0;
@@ -294,11 +294,11 @@ let actualizaprobabilidades=()=>
 {
     perdernext()
     ganarnext()
-    seguirnext()
-    txt_espacio_barajaActual.textContent=manoActual
-    txt_espacio_muestral.textContent=cartas
-    txt_espacio_perder.textContent=list_espacio_perder
-    txt_espacio_ganar.textContent=list_espacio_ganar    
+    GanarCualquiera()
+    console.log("Mazo actual : "+manoActual)
+    console.log("Espacio Muestral :"+cartas)
+    console.log("Lista de espacio para Perder :"+list_espacio_perder)
+    console.log("Lista espacio para Ganar : "+list_espacio_ganar  )  
 }
 /************************************************************************************************** */
 /************************************************************************************************** */
@@ -341,7 +341,7 @@ let getCard = ()=>
         txt_cartasresult.textContent="Cartas : "+(suma_cartas)
         validadeAs()
     }
-    return `<img src='images/JPEG/Cartas/${card}.jpg' width='100' height='150'>`    
+    return `<img src='images/JPEG/Cartas/${card}.jpg' width='120' height='180'>`    
 };
 /*      Obtener un As                       */
 let agregarAs = (as)=>

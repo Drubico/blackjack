@@ -14,16 +14,16 @@
     <div id="Grid">
         <div id="tabla-bienvedida">
             <h1 id="bienvenida">Bienvenido al Casino <span id="nombre"></span></h1>
-            <input type="button" id="empezar" value="Empezar">
-            <input type="button" id="info" value="Ver mas informacion">
+          
         </div>
         <div id="tabla-juego">
             <div>
                 <table id="tablero">
                     <tr id="padre">
                         <td>
-                            <img src="./images/JPEG/barajas/purple_back.jpg" alt="baraja" id="baraja" height="150"
-                                width="100">
+                            <img src="./images/JPEG/barajas/purple_back.jpg"
+                             alt="baraja" id="baraja" 
+                             height="180"   width="120">
                         </td>
 
                     </tr>
@@ -34,31 +34,27 @@
                 <h1>Resultado:</h1>
                 <h1 id="Resultado" value="0">0</h1>
             </div>
+          
 
         </div>
-        <div id="tabla-probabilidad">
+        <div id="botones">
+            <input type="button" id="empezar" value="Empezar">
+            <input type="button" id="info" value="Ver mas informacion">
+        </div>
+        <div id="div-probabilidad">
             <h3 id="cartas">Cartas : 0</h3>
             <h3>Probabilidad</h3>
             <h5>Ganar en la siguiente ronda</h5>
-            <p id="Falta">Conque carta ganas? : </p>
+            <p id="Falta">Buscamos: </p>
             <p id="GanarNext">0</p>
-            <h5>Pasarse en la siguiente ronda</h5>
+            <h5>Perder:</h5>
             <p id="PerderNext">0</p>
-            <h5>Seguir vivo en la siguiente ronda</h5>
-            <p id="vivirNext">0</p>
+            <h5>Ganar: </h5>
+            <p id="GanarCualquiera">0</p>
         </div>
+     
     </div>
-    <div id="Espacios-div">
-        <h1>Espacios:</h1>
-        <h3>Espacio muestral:</h3>
-        <h4 id="espacio_espacio_muestral"></h4>
-        <h3>Baraja actual</h3>
-        <h4 id="espacio_baraja_actual"></h4>
-        <h3>Baraja para perder</h3>
-        <h4 id="espacio_perder"></h4>
-        <h3>Espacio Ganar</h3>
-        <h4 id="espacio_ganar"></h4>
-    </div>
+  
 </body>
 <script src="./script.js"></script>
 
