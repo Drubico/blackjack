@@ -63,18 +63,12 @@ let perdernext=()=>
     " = "+(perder_proba.toFixed(2)*100)+"%"
 }
 let GanarCualquiera=()=>{
-
-    
      //probabilidad de ganar en la siguiente es casos favorables entre posibles
     let ganar_proba=(1-((casosfavorables_Noseguirvivo()/cartas.length))).toFixed(2)*100
     //NOTA:Encontramos el complemento de  la probabilidad de perder 
-    let espacio_ganar=(casosfavorables_Noseguirvivo())
-    txt_ganarcualquiera.textContent ="1-("+(espacio_ganar)+"/"+ (cartas.length) +
-    ") = "+(ganar_proba)+"%"
-    //OTRA SOLUCION
-    // let espacio_ganar=(cartas.length-casosfavorables_Noseguirvivo())
-    // txt_ganarcualquiera.textContent ="1-("+(espacio_ganar)+"/"+ (cartas.length) +
-    // ") = "+(ganar_proba)+"%"
+    let espacio_ganar=(cartas.length-casosfavorables_Noseguirvivo())
+    txt_ganarcualquiera.textContent =(espacio_ganar)+"/"+ (cartas.length) +
+    " = "+(ganar_proba)+"%"
     //
     //                  SI QUEREMOS CALCULAR EL VALOR DE GANAR SIN OCUPAR EL  COMPLEMENTO
     //
@@ -316,7 +310,7 @@ let nuevaCarta = ()=>   //AGREGA UNA CARTA  ALA TABLA DE JUEGO
 }
 let resultado=()=>      //SE VERIFICA CADA VES SI GANAMOS O PERDEMOS
 {
-    if(suma==21 || (suma<21 && suma_cartas==5)) //SEGUN REGLAS SI LA SUMA ES IGUAL A 21 O LLEGAMOS A 5 CARTAS Y NO HEMOS PERDIDO
+    if(suma==21 || (suma<21 && suma_cartas==5)||((suma==11 && suma_cartas==2))) //SEGUN REGLAS SI LA SUMA ES IGUAL A 21 O LLEGAMOS A 5 CARTAS Y NO HEMOS PERDIDO
     {
         bool_jugar=false                        //YA NO SE PUEDE JUGAR
         txt_resultado.textContent ="Ganaste con : "+suma        //GANAMOS CON LA SUMA QUE HICIMOS
@@ -348,7 +342,9 @@ let primeramano=()=>{       //PARA TIRAR LA PRIMERA MANO
     nuevaCarta()
     resultado()
     actualizaprobabilidades()
-    btn_empezar.style.visibility = 'hidden'
+    if(bool_jugar==true){
+        btn_empezar.style.visibility = 'hidden'
+    }
 }
 btn_info.addEventListener("click", ()=>
 {
