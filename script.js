@@ -233,7 +233,6 @@ let actualizaprobabilidades=()=>
     console.log("Mazo actual : "+manoActual)
     console.log("Espacio Muestral :"+cartas)
     console.log("Lista de espacio para Perder :"+list_espacio_perder)
-    console.log("Lista espacio para Ganar : "+list_espacio_ganar  )  
     console.log("######################################################################")
 
 }
