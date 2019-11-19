@@ -63,12 +63,18 @@ let perdernext=()=>
     " = "+(perder_proba.toFixed(2)*100)+"%"
 }
 let GanarCualquiera=()=>{
+
+    
      //probabilidad de ganar en la siguiente es casos favorables entre posibles
     let ganar_proba=(1-((casosfavorables_Noseguirvivo()/cartas.length))).toFixed(2)*100
     //NOTA:Encontramos el complemento de  la probabilidad de perder 
-    let espacio_ganar=(cartas.length-casosfavorables_Noseguirvivo())
-    txt_ganarcualquiera.textContent =(espacio_ganar)+"/"+ (cartas.length) +
-    " = "+(ganar_proba)+"%"
+    let espacio_ganar=(casosfavorables_Noseguirvivo())
+    txt_ganarcualquiera.textContent ="1-("+(espacio_ganar)+"/"+ (cartas.length) +
+    ") = "+(ganar_proba)+"%"
+    //OTRA SOLUCION
+    // let espacio_ganar=(cartas.length-casosfavorables_Noseguirvivo())
+    // txt_ganarcualquiera.textContent ="1-("+(espacio_ganar)+"/"+ (cartas.length) +
+    // ") = "+(ganar_proba)+"%"
     //
     //                  SI QUEREMOS CALCULAR EL VALOR DE GANAR SIN OCUPAR EL  COMPLEMENTO
     //
