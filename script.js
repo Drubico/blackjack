@@ -4,7 +4,8 @@
                                 /*              BOTONES               */
 let btn_carta           =   document.querySelector("#baraja")               //boton para pedir una carta
 let btn_empezar         =   document.querySelector('#empezar')              //boton de empezar y pedir nombre
-                                /*              DIV Y TABLA               */
+let btn_info            =   document.querySelector('#info')
+/*              DIV Y TABLA               */
 let div_tablero         =   document.querySelector('#tabla-juego')          //division de tablero
 let div_probabilidad    =   document.querySelector('#div-probabilidad')     //division de las probabilidades
 let tb_padre            =   document.querySelector("#padre")                //tabla donde se agregan los hijos
@@ -343,3 +344,7 @@ let primeramano=()=>{       //PARA TIRAR LA PRIMERA MANO
     actualizaprobabilidades()
     btn_empezar.style.visibility = 'hidden'
 }
+btn_info.addEventListener("click", ()=>
+{
+    window.open("info_datos/info.html");
+})

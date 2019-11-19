@@ -33,12 +33,6 @@ tr>td{
     justify-items: center;
 }
 
-
-
-
-#info{
-    visibility: hidden;
-}
 #empezar,#info{
     border-radius: 2em;
     background: transparent;
