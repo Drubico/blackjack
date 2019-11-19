@@ -5,7 +5,9 @@
 let btn_carta           =   document.querySelector("#baraja")               //boton para pedir una carta
 let btn_empezar         =   document.querySelector('#empezar')              //boton de empezar y pedir nombre
 let btn_info            =   document.querySelector('#info')
+let btn_quedarse        =   document.querySelector('#quedarse')
 /*              DIV Y TABLA               */
+let div_resultado       =   document.querySelector('#tabla-resultado')          //division de tablero
 let div_tablero         =   document.querySelector('#tabla-juego')          //division de tablero
 let div_probabilidad    =   document.querySelector('#div-probabilidad')     //division de las probabilidades
 let tb_padre            =   document.querySelector("#padre")                //tabla donde se agregan los hijos
@@ -18,13 +20,25 @@ let txt_ganarNext       =   document.querySelector('#GanarNext')            //tx
 let txt_perderNext      =   document.querySelector('#PerderNext')           //txt que dice si perdes en la siguiente (la probabilidad)
 let txt_ganarcualquiera =   document.querySelector('#GanarCualquiera')      //txt que dice que probabilidad hay de ganar
 let txt_conqueganas     =   document.querySelector('#Falta')                //txt que te dice con que carta ganas 
-                                /*              VARIABLES INTERNAS               */
+//BANCO
+let div_banco           =   document.querySelector('#banco')
+let img_cartas_banco    =   document.querySelector(".class_banco")
+let img_banco1          =   document.querySelector("#b_carta1")
+let img_banco2          =   document.querySelector("#b_carta2")
+let resultado_banco     =   document.querySelector('#resultado_banco')
+let primera_vez      =  true;
+let imagen_banco1,imagen_banco2;
+let as_banco        =   0;
+
+/*              VARIABLES INTERNAS               */
 let suma        =   0;    //suma los valores de las cartas
+let sumabanco=0;
 let suma_cartas =   0;    //suma el numero de cartas
 var repImage        ;     //la imagen de la carta
 var nueva           ;     //el nuevo hijo (la carta nueva) de la tabla
 //                          Variables Booleanas
 var bool_jugar          =   true;   //booleano que controla si estamos jugando 
+var bool_quedarse       =   false;
                                 /*              LISTAS               */
 let ases                =   [];     //lista de Ases
 let manoActual          =   [];     //lista donde esta la mano actual
@@ -297,6 +311,7 @@ btn_carta.addEventListener("click", ()=>
         nuevaCarta()                        //pide una nueva carta
         actualizaprobabilidades()           //actualiza las listas de las probabilidades
         resultado()                         //muestra el resultado si es que se gano o perdio
+        cartas_banco()
     }
 })
 /************************************************************************************************** */
@@ -310,6 +325,7 @@ let nuevaCarta = ()=>   //AGREGA UNA CARTA  ALA TABLA DE JUEGO
 }
 let resultado=()=>      //SE VERIFICA CADA VES SI GANAMOS O PERDEMOS
 {
+    
     if(suma==21 || (suma<21 && suma_cartas==5)||((suma==11 && suma_cartas==2))) //SEGUN REGLAS SI LA SUMA ES IGUAL A 21 O LLEGAMOS A 5 CARTAS Y NO HEMOS PERDIDO
     {
         bool_jugar=false                        //YA NO SE PUEDE JUGAR
@@ -323,6 +339,13 @@ let resultado=()=>      //SE VERIFICA CADA VES SI GANAMOS O PERDEMOS
         txt_resultado.textContent ="Perdiste con : "+suma       //EL RESULTADO DE LE AGREGA AL PERDISTE
         btn_empezar.style.visibility = 'visible'                //HACEMOS VISIBLE EL BOTON DE JUGAR DE NUEVO 
 
+    }else if(bool_jugar==false&&(suma<21 && suma>sumabanco)){
+        txt_resultado.textContent ="Ganaste con : "+suma        //GANAMOS CON LA SUMA QUE HICIMOS
+        btn_empezar.style.visibility = 'visible'  
+    }
+    else if(bool_jugar==false&&(suma<21 && suma<sumabanco)){
+        txt_resultado.textContent ="Perdiste con : "+suma       //EL RESULTADO DE LE AGREGA AL PERDISTE
+    btn_empezar.style.visibility = 'visible'  
     }
 }
 let jugador_name=()=>{  //PARA AGREGAR EL NOMBRE DEL USUARIO
@@ -336,8 +359,8 @@ let jugador_name=()=>{  //PARA AGREGAR EL NOMBRE DEL USUARIO
         }    
 }
 let primeramano=()=>{       //PARA TIRAR LA PRIMERA MANO
-    div_tablero.style.visibility = 'visible'
-    div_probabilidad.style.visibility = 'visible'
+    mostrar_oculto()
+    cartas_banco()
     nuevaCarta()
     nuevaCarta()
     resultado()
@@ -349,4 +372,59 @@ let primeramano=()=>{       //PARA TIRAR LA PRIMERA MANO
 btn_info.addEventListener("click", ()=>
 {
     window.open("info_datos/info.html");
+})
+let cartas_banco=()=>{
+    if(primera_vez==true){
+        imagen_banco1=getCard_banco()
+        imagen_banco2=getCard_banco()
+        primera_vez=false;
+    }
+    if(bool_jugar==false){
+        resultado_banco.textContent = 'Banco : '+sumabanco   
+        img_banco1.innerHTML = imagen_banco1
+        img_banco2.innerHTML = imagen_banco2
+    }
+   
+}
+let getCard_banco=()=>{
+    var rdm_card = Math.floor((Math.random() * cartas.length));         //DA UN NUMERO AL AZAR
+    let card = cartas[rdm_card]    
+    let card_aux= cartas.indexOf(cartas[rdm_card])                      //CARTA AUXILIAR SERA EL INDICE DE LA CARTA SI ELEGIMOS LA POSICION AL AZAR
+    cartas.splice(card_aux, 1);
+    let sum_card = card.substring(0,1)                                  //AGARRAMOS ES PRIMER CARACTER
+    if(sum_card == "J" || sum_card == "Q" || sum_card == "K" || sum_card == "1")//SI ES UN CASO ESPECIAL:(OJO ES 1 PORQUE ES SUBCARACTER DE 10)
+    {
+        sumabanco+=10
+        if(as_banco!=0 && sumabanco>21){
+            sumabanco-=10
+        }
+    }
+    else if(sum_card == "A")    //SI ES EL OTRO CASO ESPECIAL DE LAS AS
+    {
+        sumabanco+=11
+        if(as_banco!=0 && sumabanco>21){
+            sumabanco-=10
+        }
+    }
+    else    //SI NO ES CASO ESPECIAL
+    {
+        sumabanco+=parseInt(card)
+        if(as_banco!=0 && sumabanco>21){
+            sumabanco-=10
+        }
+    }
+    return `<img src='images/JPEG/Cartas/${card}.jpg' width='100' height='160'>`    
+}
+let mostrar_oculto=()=>{
+    div_tablero.style.visibility = 'visible'
+    div_probabilidad.style.visibility = 'visible'
+    div_banco.style.visibility = 'visible'
+    div_resultado.style.visibility = 'visible'
+}
+btn_quedarse.addEventListener("click", ()=>
+{
+    bool_jugar=false;
+    actualizaprobabilidades()           //actualiza las listas de las probabilidades
+    resultado()                         //muestra el resultado si es que se gano o perdio
+    cartas_banco()
 })
