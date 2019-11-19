@@ -6,11 +6,14 @@ let btn_carta           =   document.querySelector("#baraja")               //bo
 let btn_empezar         =   document.querySelector('#empezar')              //boton de empezar y pedir nombre
 let btn_info            =   document.querySelector('#info')
 let btn_quedarse        =   document.querySelector('#quedarse')
+let btn_ganarComenzar   =   document.querySelector('#info-ganar')
 /*              DIV Y TABLA               */
 let div_resultado       =   document.querySelector('#tabla-resultado')          //division de tablero
 let div_tablero         =   document.querySelector('#tabla-juego')          //division de tablero
 let div_probabilidad    =   document.querySelector('#div-probabilidad')     //division de las probabilidades
-let tb_padre            =   document.querySelector("#padre")                //tabla donde se agregan los hijos
+let tb_padre            =   document.querySelector("#padre")     
+
+           //tabla donde se agregan los hijos
                                 /*              TEXTOS               */
 let txt_resultado       =   document.querySelector('#Resultado')            //txt que dice si ganaste o perdiste y cuanto suma 
 let txt_bienvenida      =   document.querySelector('#bienvenida')           //txt que da la bienvenida y el nombre
@@ -74,15 +77,15 @@ let perdernext=()=>
     //NOTA: casosfavorables_Noseguirvivo() Retorna de su contador el numero de opciones donde perdemos
     let espacio_perder=(casosfavorables_Noseguirvivo())
     txt_perderNext.textContent =(espacio_perder)+"/"+ (cartas.length) +
-    " = "+(perder_proba.toFixed(2)*100)+"%"
+    " = "+(perder_proba.toFixed(2)*100).toFixed(2)+"%"
 }
 let GanarCualquiera=()=>{
      //probabilidad de ganar en la siguiente es casos favorables entre posibles
     let ganar_proba=(1-((casosfavorables_Noseguirvivo()/cartas.length))).toFixed(2)*100
     //NOTA:Encontramos el complemento de  la probabilidad de perder 
-    let espacio_ganar=(cartas.length-casosfavorables_Noseguirvivo())
-    txt_ganarcualquiera.textContent =(espacio_ganar)+"/"+ (cartas.length) +
-    " = "+(ganar_proba)+"%"
+    let espacio_ganar=(casosfavorables_Noseguirvivo())
+    txt_ganarcualquiera.textContent ="1 -("+(espacio_ganar)+"/"+ (cartas.length) +
+    ") = "+(ganar_proba)+"%"
     //
     //                  SI QUEREMOS CALCULAR EL VALOR DE GANAR SIN OCUPAR EL  COMPLEMENTO
     //
@@ -300,7 +303,9 @@ btn_empezar.addEventListener("click", ()=>
     else{ //SI EL BOOLEANO DE JUGAR ESTA EN VERDADERO EL BOTON DE EMPEZAR SIRVE PARA PONER EL NOMBRE Y DA 2 CARTAS
         jugador_name()              //Pide el nombre con una ventana emergente(Linea )
         primeramano()               //da la primera mano (Linea )
+        btn_ganarComenzar.style.visibility='hidden'
     }
+    
 })
 /*      boton que pide una nueva carta        */
 btn_carta.addEventListener("click", ()=>
@@ -312,6 +317,11 @@ btn_carta.addEventListener("click", ()=>
         resultado()                         //muestra el resultado si es que se gano o perdio
         cartas_banco()
     }
+})
+btn_ganarComenzar.addEventListener("click",()=>
+{
+    alert("La probabilidad de ganar en la primera mano es de :   \n"+
+    "Casos Favorables/Casos posibles = \n 4x16(Probabilidad que se las cartas sumen 21)\n / 52C2(Espacio de las 2 cartas juntas)")
 })
 /************************************************************************************************** */
 /********                          FUNCIONES EXTRA                                         ********* */
@@ -350,10 +360,10 @@ let resultado=()=>      //SE VERIFICA CADA VES SI GANAMOS O PERDEMOS
 let jugador_name=()=>{  //PARA AGREGAR EL NOMBRE DEL USUARIO
         if(txt_nombre.textContent == "")
         {
-            txt_nombre.textContent = prompt("Hola ,como Te llamas? ","Usuario");
-            if (txt_nombre.textContent == ""||null) 
+            txt_nombre.textContent =", "+ prompt("Hola ,cual es tu nombre? ","");
+            if (txt_nombre.textContent == ", "||null) 
             {
-                txt_nombre.textContent= "Usuario"
+                txt_nombre.textContent= ", Usuario"
             }
         }    
 }

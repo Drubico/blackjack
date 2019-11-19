@@ -42,7 +42,7 @@ tr>td{
     justify-content: center;
 }
 
-#empezar,#info,#quedarse{
+#empezar,#info,#quedarse,#info-ganar{
     border-radius: 2em;
     background: transparent;
     color: wheat;
