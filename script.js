@@ -321,7 +321,7 @@ btn_carta.addEventListener("click", ()=>
 btn_ganarComenzar.addEventListener("click",()=>
 {
     alert("La probabilidad de ganar en la primera mano es de :   \n"+
-    "Casos Favorables/Casos posibles = \n 4x16(Probabilidad que se las cartas sumen 21)\n / 52C2(Espacio de las 2 cartas juntas)")
+    "Casos Favorables/Casos posibles = \n 4x16(Probabilidad que se las cartas sumen 21)\n / 52C2(Espacio de las 2 cartas juntas) \n =0.05")
 })
 /************************************************************************************************** */
 /********                          FUNCIONES EXTRA                                         ********* */
