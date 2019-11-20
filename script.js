@@ -68,7 +68,7 @@ let ganarnext=()=>
     //NOTA: casosfavorables_ganar_siguiente() retorna lo que el contador determina posible para ganar en un movimiento
     txt_ganarNext.textContent =             //igualamos el texto a:
     (casosfavorables_ganar_siguiente())+"/"+ (cartas.length) +
-    " = "+(ganarNext_proba.toFixed(2)*100)+"%"
+    " = "+(ganarNext_proba.toFixed(2)*100).toFixed(0)+"%"
 }
 let perdernext=()=>
 {
@@ -77,7 +77,7 @@ let perdernext=()=>
     //NOTA: casosfavorables_Noseguirvivo() Retorna de su contador el numero de opciones donde perdemos
     let espacio_perder=(casosfavorables_Noseguirvivo())
     txt_perderNext.textContent =(espacio_perder)+"/"+ (cartas.length) +
-    " = "+(perder_proba.toFixed(2)*100).toFixed(2)+"%"
+    " = "+(perder_proba.toFixed(2)*100).toFixed(0)+"%"
 }
 let GanarCualquiera=()=>{
      //probabilidad de ganar en la siguiente es casos favorables entre posibles
@@ -85,7 +85,7 @@ let GanarCualquiera=()=>{
     //NOTA:Encontramos el complemento de  la probabilidad de perder 
     let espacio_ganar=(casosfavorables_Noseguirvivo())
     txt_ganarcualquiera.textContent ="1 -("+(espacio_ganar)+"/"+ (cartas.length) +
-    ") = "+(ganar_proba)+"%"
+    ") = "+(ganar_proba).toFixed(0)+"%"
     //
     //                  SI QUEREMOS CALCULAR EL VALOR DE GANAR SIN OCUPAR EL  COMPLEMENTO
     //
