@@ -1,0 +1,98 @@
+:root {
+    background:rgb(7, 121, 1);
+  }
+
+body{
+    /* background:red; */
+    text-align: center;
+    color: white;
+    font-size: 1.6em;
+}
+
+#Grid{
+    display: grid;
+    grid-template-columns: repeat(20,5%);
+    grid-template-rows: repeat(20,5%);
+    margin: 1em;
+}
+#tablero{
+    margin-left: 0em;
+    margin-right: 0em;
+}
+#bienvenida{
+    margin: 0;
+}
+tr>td{
+    padding: 0.2em;
+}
+#tabla-resultado{
+    visibility: hidden;
+    justify-items: center;
+      grid-column: 1/span 10;
+      grid-row:17/span 5;
+}
+#banco{
+    visibility: hidden;
+    grid-column: 11/span 7;
+    grid-row:17/span 5;
+    justify-content: center;
+}
+
+#empezar,#info,#quedarse,#info-ganar{
+    border-radius: 2em;
+    background: transparent;
+    color: wheat;
+    font-size: 0.8em ;
+    padding: 0.4em 1.3em;
+}
+/* Disenio de los valores del div de probabilidad */
+#div-probabilidad>h3,h5,p{
+    margin: 0.6em;
+}
+
+/*                  Pociciones de los div                */
+/*      div dela bienvenida */
+#tabla-bienvedida{
+    /*  en columnas: comienza en 1 se estira 17 */
+    grid-column: 1/span 16;
+    /*  en filas : comienza en 1 y se expande 2 */
+    grid-row:1/span 2;
+    display:flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+#botones{
+    align-content: center;
+    align-items: center;
+    grid-row: 1/span 2;
+    grid-column: 17/span 4;
+}
+#tabla-juego{
+    visibility: hidden;
+    grid-area: 6/1/span 10/span 16;
+    padding-top: 1em;
+}
+#div-probabilidad{
+    visibility: hidden;
+    grid-row: 4/span 18;
+    grid-column: 17/span 4;
+    border: solid black;
+    border-radius: 1em;
+    padding:0.3em;
+    margin:0.3em;
+}
+#Espacios-div{
+    visibility: hidden;
+    grid-area:  15/1/span 6/span 20;;
+  
+}
+#Espacios-div>*{
+    margin: 0%;
+    padding: 0%;
+    font-size:1em;
+}
+#compatible{
+    display: none;
+    color: black;
+}
