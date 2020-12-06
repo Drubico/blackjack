@@ -80,16 +80,7 @@ let resultado=()=>      //SE VERIFICA CADA VES SI GANAMOS O PERDEMOS
         btn_empezar.style.visibility = 'visible'  
     }
 }
-let jugador_name=()=>{  //PARA AGREGAR EL NOMBRE DEL USUARIO
-        if(txt_nombre.textContent == "")
-        {
-            txt_nombre.textContent =", "+ prompt("Hola ,cual es tu nombre? ","");
-            if (txt_nombre.textContent == ", "||null) 
-            {
-                txt_nombre.textContent= ", Usuario"
-            }
-        }    
-}
+
 let primeramano=()=>{       //PARA TIRAR LA PRIMERA MANO
     mostrar_oculto()
     cartas_banco()

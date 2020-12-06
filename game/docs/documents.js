@@ -17,7 +17,8 @@ let tb_padre            =   document.querySelector("#padre")
                                 /*              TEXTOS               */
 let txt_resultado       =   document.querySelector('#Resultado')            //txt que dice si ganaste o perdiste y cuanto suma 
 let txt_bienvenida      =   document.querySelector('#bienvenida')           //txt que da la bienvenida y el nombre
-let txt_nombre          =   document.querySelector('#nombre')               //txt con el nombre del jugador
+let txt_nombre          =   document.querySelector('#Sname')               //txt con el nombre del jugador
+let btn_BorrarCookies   =   document.querySelector('#BorrarCookies')               //txt con el nombre del jugador
 let txt_cartasresult    =   document.querySelector('#cartas')               //txt con el numero de cartas en la mesa
 let txt_ganarNext       =   document.querySelector('#GanarNext')            //txt que dice si ganas en la siguiente  (la probabilidad)
 let txt_perderNext      =   document.querySelector('#PerderNext')           //txt que dice si perdes en la siguiente (la probabilidad)
@@ -34,6 +35,7 @@ let imagen_banco1,imagen_banco2;
 let as_banco        =   0;
 
 /*              VARIABLES INTERNAS               */
+let nombre = "";
 let suma        =   0;    //suma los valores de las cartas
 let sumabanco=0;
 let suma_cartas =   0;    //suma el numero de cartas

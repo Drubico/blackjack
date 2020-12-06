@@ -1,17 +1,25 @@
+
 /************************************************************************************************** */
                         /*          BOTONES            */
 /************************************************************************************************** */
 /*      boton de empezar        */
 btn_empezar.addEventListener("click", ()=>
 {
-    if(bool_jugar==false){location.reload();}  //SI EL BOOLEANO DE JUGAR ES FALSO ES PORQUE YA ACABO EL JUEGO Y
-    // EL BOTON SIRVE PARA RECARGAR LA PAGINA
-    else{ //SI EL BOOLEANO DE JUGAR ESTA EN VERDADERO EL BOTON DE EMPEZAR SIRVE PARA PONER EL NOMBRE Y DA 2 CARTAS
-        jugador_name()              //Pide el nombre con una ventana emergente(Linea )
-        primeramano()               //da la primera mano (Linea )
-        btn_ganarComenzar.style.visibility='hidden'
+    // onload="checkCookie()"
+    // https://www.w3schools.com/js/tryit.asp?filename=tryjs_cookie_username
+    // https://www.w3schools.com/js/js_cookies.asp
+    if(bool_jugar==false)
+    {
+        location.reload()
     }
-    
+    else
+    {
+        jugador_name();
+    }
+    //name = checkCookie();
+    txt_nombre.innerHTML =checkCookie();
+    primeramano()    
+    btn_ganarComenzar.style.visibility='hidden'
 })
 /*      boton que pide una nueva carta        */
 btn_carta.addEventListener("click", ()=>
@@ -34,7 +42,12 @@ btn_info.addEventListener("click", ()=>
 {
     window.open("info_datos/info.html");
 })
-
+btn_BorrarCookies.addEventListener("click", ()=>
+{
+    var user=getCookie("username");
+        setCookie("username", "", 30);
+    
+})
 btn_quedarse.addEventListener("click", ()=>
 {
     bool_jugar=false;
