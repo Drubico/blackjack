@@ -2,14 +2,14 @@
 function setCookie(cname,cvalue,exdays) {
     var d = new Date();
     d.setTime(d.getTime() + (exdays*24*60*60*1000));
-    var expires = "expires=" + d.toGMTString();
-    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+    var expires         = "expires=" + d.toGMTString();
+        document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
 }
 
 function getCookie(cname) {
-var name = cname + "=";
+var name          = cname + "=";
 var decodedCookie = decodeURIComponent(document.cookie);
-var ca = decodedCookie.split(';');
+var ca            = decodedCookie.split(';');
 for(var i = 0; i < ca.length; i++) {
     var c = ca[i];
     while (c.charAt(0) == ' ') {
@@ -23,7 +23,7 @@ return "";
 }
 
 function checkCookie() {
-    var user=getCookie("username");
+    var user = getCookie("username");
     if (user == ""){
         user = prompt("Please enter your name:","");
         if (user != "" && user != null) {

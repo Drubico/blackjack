@@ -1,37 +1,37 @@
-<!-- Rubi Copyright :V-->
+<!-- Rubi Copyright: V-->
 <!DOCTYPE html>
-<html lang="en">
+<html lang = "en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta charset    = "UTF-8">
+    <meta name       = "viewport" content        = "width=device-width, initial-scale=1.0">
+    <meta http-equiv = "X-UA-Compatible" content = "ie=edge">
     <title>Casino</title>
-    <link rel="stylesheet" href="./view/dis.css">
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximun-scale=1.0, minimun-scale=1.0">
+    <link rel  = "stylesheet" href  = "./view/dis.css">
+    <meta name = "viewport" content = "width=device-width, user-scalable=no, initial-scale=1.0, maximun-scale=1.0, minimun-scale=1.0">
 </head>
 
-<div id="compatible">
-    <h1 id="nosepuede">No se puede jugar en esta resolucion ></h1>
+<div id = "compatible">
+<h1  id = "nosepuede">No se puede jugar en esta resolucion ></h1>
 </div>
 <body  >
-    <div id="Grid">
-        <div id="tabla-bienvedida">
-            <h1 id="bienvenida">Bienvenido al Casino <span id="Sname"></span></h1>
-            <input type="button" id="info" value="info">
-            <input type="button" id="BorrarCookies" value="Borrar Usuario">
-            <input type="button" id="info-ganar" value="Ganar Al Comenzar?">
+    <div   id   = "Grid">
+    <div   id   = "tabla-bienvedida">
+    <h1    id   = "bienvenida">Bienvenido al Casino <span id = "Sname"></span></h1>
+    <input type = "button" id                                = "info" value          = "info">
+    <input type = "button" id                                = "BorrarCookies" value = "Borrar Usuario">
+    <input type = "button" id                                = "info-ganar" value    = "Ganar Al Comenzar?">
 
         </div>
         
-        <div id="tabla-juego">
+        <div id = "tabla-juego">
             <div>
-                <table id="tablero">
-                    <tr id="padre">
+                <table id = "tablero">
+                <tr    id = "padre">
                         <td>
-                            <img src="./images/JPEG/barajas/purple_back.jpg"
-                                alt="baraja" id="baraja" 
-                                height="180"   width="120">
+                            <img src    = "./images/JPEG/barajas/purple_back.jpg"
+                                alt    = "baraja" id   = "baraja"
+                                height = "180"   width = "120">
                         </td>
 
                     </tr>
@@ -39,57 +39,57 @@
             </div>
 
         </div>
-        <div id="botones">
-            <input type="button" id="empezar" value="Empezar">
+        <div   id   = "botones">
+        <input type = "button" id = "empezar" value = "Empezar">
         </div>
-        <div id="tabla-resultado">
-                <h1>Resultado:</h1>
-                <h1 id="Resultado" value="0">0</h1>
+        <div id = "tabla-resultado">
+                <h1>Resultado: </h1>
+                <h1 id = "Resultado" value = "0">0</h1>
             </div>
-            <div id="banco">
+            <div id = "banco">
                     <table>
-                        <tr id="resultado_banco"></tr>
+                        <tr id = "resultado_banco"></tr>
                         <tr>
                         
-                            <td id="b_carta1" class="class_banco">
-                                <img src="./images/JPEG/barajas/purple_back.jpg"
-                                alt="baraja" id="baraja" 
-                                height="160"   width="100">
+                            <td  id     = "b_carta1" class = "class_banco">
+                            <img src    = "./images/JPEG/barajas/purple_back.jpg"
+                                 alt    = "baraja" id      = "baraja"
+                                 height = "160"   width    = "100">
                             </td>
-                            <td id="b_carta2"  class="class_banco">
-                                <img src="./images/JPEG/barajas/purple_back.jpg"
-                                alt="baraja" id="baraja" 
-                                height="160"   width="100">
+                            <td  id     = "b_carta2"  class = "class_banco">
+                            <img src    = "./images/JPEG/barajas/purple_back.jpg"
+                                 alt    = "baraja" id       = "baraja"
+                                 height = "160"   width     = "100">
                             </td>
                         </tr>
                     </table>
                 </div>
-        <div id="div-probabilidad">
-            <h3 id="cartas">Cartas : 0</h3>
+        <div id = "div-probabilidad">
+        <h3  id = "cartas">Cartas : 0</h3>
             <h3>Probabilidad</h3>
             <h5>Ganar en la siguiente ronda</h5>
-            <p id="Falta">Buscamos: </p>
-            <p id="GanarNext">0</p>
-            <h5>Perder:</h5>
-            <p id="PerderNext">0</p>
+            <p id = "Falta">Buscamos: </p>
+            <p id = "GanarNext">0</p>
+            <h5>Perder: </h5>
+            <p id = "PerderNext">0</p>
             <h5>Ganar: </h5>
-            <p id="GanarCualquiera">0</p>
-            <input type="button" id="quedarse" value="quedarse">
+            <p     id   = "GanarCualquiera">0</p>
+            <input type = "button" id = "quedarse" value = "quedarse">
         </div>
      
     </div>
   
 </body>
-<!-- <script src="game/script.js" type="text/javascript"></script></script> -->
-<script src="./game/docs/documents.js" type="text/javascript"></script></script>
-<script src="./game/username.js" type="text/javascript"></script></script>
-<script src="./game/player.js" type="text/javascript"></script></script>
-<script src="./game/btn_actions.js" type="text/javascript"></script></script>
-<script src="./game/CasosFavorables.js" type="text/javascript"></script></script>
-<script src="./game/banco.js" type="text/javascript"></script></script>
-<script src="./game/Game.js" type="text/javascript"></script></script>
-<script src="./game/Ganar.js" type="text/javascript"></script></script>
-<script src="./game/Perder.js" type="text/javascript"></script></script>
-<script src="./game/Views/views.js" type="text/javascript"></script></script>
+<!--    <script src = "game/script.js" type            = "text/javascript"></script></script> -->
+<script src         = "./game/docs/documents.js" type  = "text/javascript"></script></script>
+<script src         = "./game/username.js" type        = "text/javascript"></script></script>
+<script src         = "./game/player.js" type          = "text/javascript"></script></script>
+<script src         = "./game/btn_actions.js" type     = "text/javascript"></script></script>
+<script src         = "./game/CasosFavorables.js" type = "text/javascript"></script></script>
+<script src         = "./game/banco.js" type           = "text/javascript"></script></script>
+<script src         = "./game/Game.js" type            = "text/javascript"></script></script>
+<script src         = "./game/Ganar.js" type           = "text/javascript"></script></script>
+<script src         = "./game/Perder.js" type          = "text/javascript"></script></script>
+<script src         = "./game/Views/views.js" type     = "text/javascript"></script></script>
 
 </html>

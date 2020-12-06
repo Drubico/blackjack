@@ -15,11 +15,11 @@ btn_empezar.addEventListener("click", ()=>
     else
     {
         jugador_name();
+        txt_nombre.innerHTML = checkCookie();
+        primeramano()    
+        btn_ganarComenzar.style.visibility = 'hidden'
     }
     //name = checkCookie();
-    txt_nombre.innerHTML =checkCookie();
-    primeramano()    
-    btn_ganarComenzar.style.visibility='hidden'
 })
 /*      boton que pide una nueva carta        */
 btn_carta.addEventListener("click", ()=>
@@ -44,13 +44,13 @@ btn_info.addEventListener("click", ()=>
 })
 btn_BorrarCookies.addEventListener("click", ()=>
 {
-    var user=getCookie("username");
+    var user = getCookie("username");
         setCookie("username", "", 30);
     
 })
 btn_quedarse.addEventListener("click", ()=>
 {
-    bool_jugar=false;
+    bool_jugar = false;
     actualizaprobabilidades()           //actualiza las listas de las probabilidades
     resultado()                         //muestra el resultado si es que se gano o perdio
     cartas_banco()
