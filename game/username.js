@@ -37,3 +37,11 @@ let jugador_name=()=>{  //PARA AGREGAR EL NOMBRE DEL USUARIO
     console.log(typeof(checkCookie())+" : "+checkCookie())
 
 }
+
+let iflogin=()=>{
+    if(checkCookie()!=""){
+        txt_nombre.innerHTML = checkCookie();
+        primeramano()    
+        btn_ganarComenzar.style.visibility = 'hidden'
+    }
+}

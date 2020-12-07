@@ -10,6 +10,7 @@ btn_empezar.addEventListener("click", ()=>
     // https://www.w3schools.com/js/js_cookies.asp
     if(bool_jugar==false)
     {
+        
         location.reload()
     }
     else

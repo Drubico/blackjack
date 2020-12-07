@@ -65,22 +65,25 @@ let resultado = ()=>  //SE VERIFICA CADA VES SI GANAMOS O PERDEMOS
     {
         bool_jugar                   = false                   //YA NO PODEMOS JUGAR
         txt_resultado.textContent    = "Perdiste con : "+suma  //EL RESULTADO DE LE AGREGA AL PERDISTE
-        btn_empezar.style.visibility = 'visible'               //HACEMOS VISIBLE EL BOTON DE JUGAR DE NUEVO 
+        btn_empezar_de_nuevo()
 
     }else if(bool_jugar==false&&(suma<21 && suma>sumabanco)){
         txt_resultado.textContent    = "Ganaste con : "+suma  //GANAMOS CON LA SUMA QUE HICIMOS
-        btn_empezar.style.visibility = 'visible'
+        btn_empezar_de_nuevo()
     }
     else if(bool_jugar==false&&(suma<21 && suma<sumabanco)){
         txt_resultado.textContent    = "Perdiste con : "+suma  //EL RESULTADO DE LE AGREGA AL PERDISTE
-        btn_empezar.style.visibility = 'visible'
+        btn_empezar_de_nuevo()
     }
     else if(bool_jugar==false&&(suma<21 && suma==sumabanco)){
         txt_resultado.textContent    = "Empate con : "+suma  //EL RESULTADO DE LE AGREGA AL PERDISTE
-        btn_empezar.style.visibility = 'visible'
+        btn_empezar_de_nuevo()
     }
 }
-
+let btn_empezar_de_nuevo=()=>{
+    btn_empezar.style.visibility = 'visible'
+    btn_empezar.value="De nuevo?"
+}
 let primeramano=()=>{       //PARA TIRAR LA PRIMERA MANO
     mostrar_oculto()
     cartas_banco()
