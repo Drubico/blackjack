@@ -32,6 +32,15 @@ body {
 	width: 96vw;
 }
 
+/* Elimina los márgenes laterales de los hijos directos de #Grid */
+#Grid > * {
+	margin-left: 0 !important;
+	margin-right: 0 !important;
+	width: 100%;
+	max-width: 100%;
+	box-sizing: border-box;
+}
+
 #tabla-bienvedida {
 	grid-column: 1 / span 20;
 	grid-row: 1 / span 2;
@@ -67,11 +76,11 @@ body {
 #tabla-juego {
 	visibility: visible;
 	grid-area: 4 / 1 / span 10 / span 16;
-	padding-top: 1em;
+	padding-top: 1.2em;
 	background: var(--card-bg);
 	border-radius: 1em;
 	box-shadow: var(--shadow);
-	min-height: 220px;
+	min-height: 100px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -93,6 +102,16 @@ tr > td {
 	align-items: flex-start;
 	gap: 2em;
 	width: 100%;
+	margin-bottom: 1em;
+}
+
+/* Igual ancho y alineación para encabezado y fila de probabilidad/resultado */
+#tabla-bienvedida,
+#fila-prob-resultado {
+	max-width: none;
+	width: 100%;
+	margin-left: 0;
+	margin-right: 0;
 	margin-bottom: 1em;
 }
 
@@ -133,6 +152,11 @@ tr > td {
 	align-items: center;
 }
 
+/* Elimina margen lateral en #banco para que todo esté alineado */
+#banco {
+	margin-left: 0;
+}
+
 #zona-juego {
 	width: 100%;
 	display: flex;
@@ -143,7 +167,6 @@ tr > td {
 
 #tabla-juego,
 #banco {
-	width: 100%;
 	max-width: 100%;
 	min-width: unset;
 	flex: 1 1 50%;
@@ -164,14 +187,45 @@ tr > td {
 #tabla-juego h2,
 #banco h2 {
 	color: var(--accent2);
+	margin-top: 0;
 	margin-bottom: 0.7em;
 	font-size: 1.3em;
 	text-align: center;
 	width: 100%;
 }
 
-#banco {
-	margin-left: 1em;
+/* Ajusta el padding de las cards para que sean iguales */
+#tabla-juego,
+#banco,
+.card-group {
+	padding: 1.2em 1.5em;
+}
+
+/* Elimina padding-top extra en #tabla-juego */
+#tabla-juego {
+	padding-top: 1.2em;
+}
+
+/* Elimina margen vertical de las tablas internas */
+#tabla-juego table,
+#banco table {
+	margin: 0;
+}
+
+/* Ajusta el gap entre las columnas para que no se vea tan separado */
+#main-columns {
+	gap: 1.5em;
+	max-width: none;
+	width: 100%;
+	margin-left: 0;
+	margin-right: 0;
+}
+
+/* Ajusta el gap entre las filas internas de las cards */
+#col-izq,
+#col-der,
+.card-group {
+	gap: 1em;
 }
 
 /* Ajusta los anchos mínimos y máximos para evitar solapamientos */
@@ -303,19 +357,24 @@ img:hover {
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
-	align-items: flex-start;
+	align-items: stretch;
 	gap: 2em;
 	width: 100%;
+	max-width: 900px;
+	margin: 0 auto;
+	min-height: 400px;
 }
 
 #col-izq {
 	display: flex;
 	flex-direction: column;
+	justify-content: stretch;
+	align-items: stretch;
+	height: 100%;
 	gap: 1em;
 	flex: 0 0 350px;
 	min-width: 260px;
 	max-width: 350px;
-	align-items: stretch;
 }
 
 /* Ajusta la card-group para que no crezca y no tenga scroll */
@@ -351,6 +410,9 @@ img:hover {
 #col-der {
 	display: flex;
 	flex-direction: column;
+	justify-content: stretch;
+	align-items: stretch;
+	height: 100%;
 	gap: 1.5em;
 	flex: 1 1 600px;
 	min-width: 300px;
@@ -360,44 +422,20 @@ img:hover {
 	justify-content: stretch;
 }
 
-/* Ajusta el alto de las cards de la derecha para que no tengan scroll innecesario */
-#tabla-juego,
-#banco {
-	width: 100%;
-	max-width: 100%;
-	min-width: unset;
-	flex: 1 1 50%;
-	background: var(--card-bg);
-	border-radius: 1em;
-	box-shadow: var(--shadow);
-	padding: 1.5em 1em 1em 1em;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: flex-start;
-	margin: 0;
-	overflow: visible;
-}
-
 /* Responsive: apila columnas en móvil */
 @media (max-width: 900px) {
+	#tabla-bienvedida,
+	#fila-prob-resultado,
+	#main-columns {
+		max-width: 98vw;
+		width: 100%;
+	}
 	#main-columns {
 		flex-direction: column;
-		align-items: stretch;
-		gap: 1em;
+		min-height: unset;
 	}
 	#col-izq,
 	#col-der {
-		max-width: 98vw;
-		min-width: unset;
-		width: 100%;
-	}
-	#col-der {
-		height: auto;
-		min-height: unset;
-	}
-	#tabla-juego,
-	#banco {
 		height: auto;
 	}
 }
@@ -458,6 +496,14 @@ img:hover {
 }
 
 /* Mostrar mensaje de resolución baja si la pantalla es muy pequeña */
+@media (max-width: 400px), (max-height: 400px) {
+	#compatible {
+		display: block !important;
+	}
+	#Grid {
+		display: none !important;
+	}
+}
 @media (max-width: 400px), (max-height: 400px) {
 	#compatible {
 		display: block !important;
