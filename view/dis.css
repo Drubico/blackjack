@@ -1,104 +1,468 @@
+/* Fondo oscuro con degradado casino */
 :root {
-    background:rgb(7, 121, 1);
-  }
-
-body{
-    /* background:red; */
-    text-align: center;
-    color: white;
-    font-size: 1.6em;
-}
-#Sname{
-    margin:0;
-    margin-left: 0em;
-    margin-right: 0em;
-}
-#Grid{
-    display: grid;
-    grid-template-columns: repeat(20,5%);
-    grid-template-rows: repeat(20,5%);
-    margin: 1em;
-}
-#tablero{
-    margin-top: 0em;
-    margin-left: 0em;
-    margin-right: 0em;
-}
-#bienvenida{
-    margin: 0;
-}
-tr>td{
-    padding: 0.2em;
-}
-#tabla-resultado{
-    visibility: hidden;
-    justify-items: center;
-    grid-column: 1/span 10;
-    grid-row:14/span 5;
-}
-#banco{
-    visibility: hidden;
-    grid-column: 11/span 7;
-    grid-row:15/span 5;
-    justify-content: center;
+	--main-bg: #181c1b;
+	--main-green: #1e3d2f;
+	--accent: #2ecc40;
+	--accent2: #ffd700;
+	--card-bg: #232b27;
+	--text: #fff;
+	--button-bg: linear-gradient(90deg, #2ecc40 0%, #27ae60 100%);
+	--button-hover: linear-gradient(90deg, #ffd700 0%, #ffb300 100%);
+	--button-text: #222;
+	--shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+	background: linear-gradient(135deg, var(--main-bg) 60%, var(--main-green) 100%);
+	min-height: 100vh;
 }
 
-#empezar,#info,#quedarse,#info-ganar,#BorrarCookies{
-    border-radius: 2em;
-    background: transparent;
-    color: wheat;
-    font-size: 0.8em ;
-    padding: 0.4em 1.3em;
-}
-/* Disenio de los valores del div de probabilidad */
-#div-probabilidad>h3,h5,p{
-    margin: 0.6em;
+body {
+	font-family: "Montserrat", "Segoe UI", Arial, sans-serif;
+	color: var(--text);
+	background: transparent;
+	margin: 0;
+	padding: 0;
+	min-height: 100vh;
 }
 
-/*                  Pociciones de los div                */
-/*      div dela bienvenida */
-#tabla-bienvedida{
-    /*  en columnas: comienza en 1 se estira 17 */
-    grid-column: 1/span 16;
-    /*  en filas : comienza en 1 y se expande 2 */
-    grid-row:1/span 2;
-    margin-bottom: 0;
-    display:flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    align-items: center;
+#Grid {
+	display: flex;
+	flex-direction: column;
+	gap: 1em;
+	margin: 1.5em auto;
+	max-width: 1100px;
+	width: 96vw;
 }
-#botones{
-    align-content: center;
-    align-items: center;
-    grid-row: 1/span 2;
-    grid-column: 17/span 4;
+
+#tabla-bienvedida {
+	grid-column: 1 / span 20;
+	grid-row: 1 / span 2;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background: var(--card-bg);
+	border-radius: 1em;
+	box-shadow: var(--shadow);
+	padding: 1.2em 1.5em;
 }
-#tabla-juego{
-    visibility: hidden;
-    grid-area: 4/1/span 10/span 16;
-    padding-top: 1em;
+
+#bienvenida {
+	margin: 0;
+	font-size: 2.2em;
+	font-weight: 700;
+	letter-spacing: 1px;
+	color: var(--accent2);
+	text-shadow: 0 2px 8px #000a;
 }
-#div-probabilidad{
-    visibility: hidden;
-    grid-row: 2/span 18;
-    grid-column: 17/span 4;
-    border: solid black;
-    border-radius: 1em;
-    padding:0.3em;
-    margin:0.3em;
+
+#Sname {
+	color: var(--accent);
+	font-weight: bold;
 }
-#Espacios-div{
-    visibility: hidden;
-    grid-area:  15/1/span 6/span 20;;
-  
+
+#botones {
+	display: flex;
+	flex-direction: row;
+	gap: 1em;
 }
-#Espacios-div>*{
-    margin: 0%;
-    padding: 0%;
-    font-size:1em;
+
+#tabla-juego {
+	visibility: visible;
+	grid-area: 4 / 1 / span 10 / span 16;
+	padding-top: 1em;
+	background: var(--card-bg);
+	border-radius: 1em;
+	box-shadow: var(--shadow);
+	min-height: 220px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
-#compatible{
-    display: none;
-    color: black;
+
+#tablero {
+	margin: 0 auto;
+}
+
+tr > td {
+	padding: 0.2em;
+}
+
+/* Fila de probabilidad y resultado: lado a lado, sin solaparse */
+#fila-prob-resultado {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: flex-start;
+	gap: 2em;
+	width: 100%;
+	margin-bottom: 1em;
+}
+
+#tabla-resultado {
+	visibility: visible;
+	min-width: 220px;
+	max-width: 350px;
+	flex: 1 1 320px;
+	grid-column: 6 / span 10;
+	grid-row: 3 / span 2;
+	background: var(--card-bg);
+	border-radius: 1em;
+	box-shadow: var(--shadow);
+	padding: 1.2em 0.5em;
+	text-align: center;
+	margin: 0 auto;
+	z-index: 2;
+	position: relative;
+}
+
+#tabla-resultado h1 {
+	font-size: 1.5em;
+	color: var(--accent2);
+	margin: 0.2em 0;
+}
+
+#banco {
+	visibility: visible;
+	grid-column: 11 / span 7;
+	grid-row: 15 / span 5;
+	justify-content: center;
+	background: var(--card-bg);
+	border-radius: 1em;
+	box-shadow: var(--shadow);
+	padding: 1em;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+#zona-juego {
+	width: 100%;
+	display: flex;
+	justify-content: space-around;
+	align-items: flex-start;
+	gap: 2em;
+}
+
+#tabla-juego,
+#banco {
+	width: 100%;
+	max-width: 100%;
+	min-width: unset;
+	flex: 1 1 50%;
+	background: var(--card-bg);
+	border-radius: 1em;
+	box-shadow: var(--shadow);
+	padding: 1.5em 1em 1em 1em;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: flex-start;
+	margin: 0;
+	overflow-x: auto;
+	overflow-y: auto;
+}
+
+/* Títulos centrados y consistentes */
+#tabla-juego h2,
+#banco h2 {
+	color: var(--accent2);
+	margin-bottom: 0.7em;
+	font-size: 1.3em;
+	text-align: center;
+	width: 100%;
+}
+
+#banco {
+	margin-left: 1em;
+}
+
+/* Ajusta los anchos mínimos y máximos para evitar solapamientos */
+#div-probabilidad {
+	visibility: visible;
+	min-width: 200px;
+	max-width: 260px;
+	flex: 0 1 240px;
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+	justify-content: flex-start;
+	padding: 1em 0.5em;
+	gap: 0.5em;
+	position: relative;
+	box-sizing: border-box;
+}
+
+#div-probabilidad h3 {
+	margin: 0.2em 0 0.1em 0;
+	font-size: 1.1em;
+	font-weight: 600;
+	color: var(--accent2);
+	text-align: center;
+}
+
+#div-probabilidad .prob-row {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	background: rgba(46, 204, 64, 0.13);
+	border-radius: 0.5em;
+	padding: 0.3em 0.7em;
+	margin-bottom: 0.2em;
+	box-shadow: 0 1px 4px #0002;
+}
+
+#div-probabilidad .prob-label {
+	font-size: 1em;
+	color: #aaa;
+}
+
+#div-probabilidad .prob-value {
+	font-size: 1.1em;
+	font-weight: bold;
+	color: var(--accent);
+	background: #181c1b;
+	padding: 0.1em 0.7em;
+	border-radius: 1em;
+	margin-left: 0.5em;
+	box-shadow: 0 1px 4px #0003;
+}
+
+#div-probabilidad #quedarse {
+	margin-top: 0.7em;
+	align-self: center;
+	width: 90%;
+	font-size: 1.1em;
+	font-weight: 600;
+	letter-spacing: 1px;
+}
+
+input[type="button"],
+button {
+	border-radius: 2em;
+	background: var(--button-bg);
+	color: var(--button-text);
+	font-size: 1.1em;
+	font-weight: 600;
+	padding: 0.6em 2em;
+	border: none;
+	margin: 0.2em;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+	transition: background 0.25s, color 0.2s, transform 0.12s, box-shadow 0.2s;
+	cursor: pointer;
+	outline: none;
+}
+
+input[type="button"]:hover,
+button:hover {
+	background: var(--button-hover);
+	color: #222;
+	transform: translateY(-2px) scale(1.05);
+	box-shadow: 0 4px 16px #ffd70055;
+}
+
+img {
+	border-radius: 0.5em;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+	background: #111;
+	transition: transform 0.2s;
+}
+
+img:hover {
+	transform: scale(1.04) rotate(-2deg);
+	box-shadow: 0 6px 18px #ffd70033;
+}
+
+#compatible {
+	display: none;
+	color: #fff;
+	background: #c0392b;
+	padding: 2em;
+	text-align: center;
+	font-size: 1.5em;
+	border-radius: 1em;
+	margin: 2em auto;
+	max-width: 400px;
+	box-shadow: var(--shadow);
+	position: fixed;
+	top: 10vh;
+	left: 0;
+	right: 0;
+	z-index: 1000;
+}
+
+/* Quita visibility: hidden por defecto en los elementos principales */
+#tabla-juego,
+#banco,
+#div-probabilidad,
+#tabla-resultado {
+	visibility: visible;
+}
+
+/* Si necesitas ocultar algo, hazlo solo por JS cuando sea necesario */
+
+/* Ajusta el layout para que los elementos sean visibles y no se colapsen */
+#main-columns {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: flex-start;
+	gap: 2em;
+	width: 100%;
+}
+
+#col-izq {
+	display: flex;
+	flex-direction: column;
+	gap: 1em;
+	flex: 0 0 350px;
+	min-width: 260px;
+	max-width: 350px;
+	align-items: stretch;
+}
+
+/* Ajusta la card-group para que no crezca y no tenga scroll */
+.card-group {
+	background: var(--card-bg);
+	border-radius: 1em;
+	box-shadow: var(--shadow);
+	padding: 1.2em 1.5em;
+	display: flex;
+	flex-direction: column;
+	gap: 1.2em;
+	width: 100%;
+	max-width: 350px;
+	align-items: stretch;
+	box-sizing: border-box;
+	overflow: visible; /* Elimina scroll */
+}
+
+/* Evita que los hijos de la card-group generen scroll o crezcan demasiado */
+.card-group #div-probabilidad,
+.card-group #tabla-resultado {
+	background: none;
+	box-shadow: none;
+	border-radius: 0;
+	padding: 0;
+	margin: 0;
+	width: 100%;
+	max-width: 100%;
+	overflow: visible;
+}
+
+/* Ajusta el tamaño de la columna derecha para que use el resto del espacio */
+#col-der {
+	display: flex;
+	flex-direction: column;
+	gap: 1.5em;
+	flex: 1 1 600px;
+	min-width: 300px;
+	width: 100%;
+	height: 100%;
+	align-items: stretch;
+	justify-content: stretch;
+}
+
+/* Ajusta el alto de las cards de la derecha para que no tengan scroll innecesario */
+#tabla-juego,
+#banco {
+	width: 100%;
+	max-width: 100%;
+	min-width: unset;
+	flex: 1 1 50%;
+	background: var(--card-bg);
+	border-radius: 1em;
+	box-shadow: var(--shadow);
+	padding: 1.5em 1em 1em 1em;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: flex-start;
+	margin: 0;
+	overflow: visible;
+}
+
+/* Responsive: apila columnas en móvil */
+@media (max-width: 900px) {
+	#main-columns {
+		flex-direction: column;
+		align-items: stretch;
+		gap: 1em;
+	}
+	#col-izq,
+	#col-der {
+		max-width: 98vw;
+		min-width: unset;
+		width: 100%;
+	}
+	#col-der {
+		height: auto;
+		min-height: unset;
+	}
+	#tabla-juego,
+	#banco {
+		height: auto;
+	}
+}
+
+/* Ajustes para móviles */
+@media (max-width: 600px) {
+	#Grid {
+		gap: 0.5em;
+		width: 100vw;
+	}
+	#fila-prob-resultado {
+		flex-direction: column;
+		align-items: stretch;
+		gap: 0.5em;
+		width: 100%;
+		margin: 0.2em auto;
+	}
+	#div-probabilidad,
+	#tabla-resultado {
+		width: 98vw;
+		max-width: 98vw;
+		min-width: unset;
+	}
+	#zona-juego {
+		flex-direction: column;
+		align-items: stretch;
+		gap: 0.5em;
+	}
+}
+
+/* Mostrar mensaje de resolución baja si la pantalla es muy pequeña */
+@media (max-width: 400px), (max-height: 400px) {
+	#compatible {
+		display: block !important;
+	}
+	#Grid {
+		display: none !important;
+	}
+	#zona-juego {
+		flex-direction: column;
+		align-items: stretch;
+		gap: 0.5em;
+	}
+	#tabla-juego,
+	#banco {
+		min-width: unset;
+	}
+	#fila-prob-resultado {
+		flex-direction: column;
+		align-items: stretch;
+		gap: 0.5em;
+		width: 98vw;
+		margin: 0.2em auto;
+	}
+	#div-probabilidad {
+		padding: 0.5em 0.2em;
+	}
+}
+
+/* Mostrar mensaje de resolución baja si la pantalla es muy pequeña */
+@media (max-width: 400px), (max-height: 400px) {
+	#compatible {
+		display: block !important;
+	}
+	#Grid {
+		display: none !important;
+	}
 }
