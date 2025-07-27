@@ -121,6 +121,8 @@ tr > td {
 	gap: 2em;
 	width: 100%;
 	margin-bottom: 1em;
+	min-height: 400px;
+	height: 100%;
 }
 
 /* Igual ancho y alineación para encabezado y fila de probabilidad/resultado */
@@ -137,7 +139,8 @@ tr > td {
 	visibility: visible;
 	min-width: 220px;
 	max-width: 350px;
-	flex: 1 1 320px;
+	width: 100%;
+	flex: 1;
 	grid-column: 6 / span 10;
 	grid-row: 3 / span 2;
 	background: var(--card-bg);
@@ -393,6 +396,15 @@ img:hover {
 	flex: 0 0 350px;
 	min-width: 260px;
 	max-width: 350px;
+	min-height: -webkit-fill-available;
+}
+
+/* Haz que col-izq ocupe todo el alto de su padre */
+#col-izq {
+	height: 100%;
+	align-self: stretch;
+	display: flex;
+	flex-direction: column;
 }
 
 /* Ajusta la card-group para que no crezca y no tenga scroll */
@@ -409,6 +421,8 @@ img:hover {
 	align-items: stretch;
 	box-sizing: border-box;
 	overflow: visible; /* Elimina scroll */
+	flex: 1 1 auto;
+	height: 100%;
 }
 
 /* Evita que los hijos de la card-group generen scroll o crezcan demasiado */
