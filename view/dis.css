@@ -42,15 +42,22 @@ body {
 }
 
 #tabla-bienvedida {
-	grid-column: 1 / span 20;
-	grid-row: 1 / span 2;
 	display: flex;
-	justify-content: space-between;
+	flex-direction: column;
+	justify-content: flex-start;
 	align-items: center;
 	background: var(--card-bg);
 	border-radius: 1em;
 	box-shadow: var(--shadow);
 	padding: 1.2em 1.5em;
+	gap: 1em;
+}
+
+.bienvenida-titulo {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 #bienvenida {
@@ -60,6 +67,17 @@ body {
 	letter-spacing: 1px;
 	color: var(--accent2);
 	text-shadow: 0 2px 8px #000a;
+	text-align: center;
+	width: 100%;
+}
+
+.bienvenida-botones {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 1em;
+	margin-top: 0.5em;
 }
 
 #Sname {
@@ -495,7 +513,7 @@ img:hover {
 	}
 }
 
-/* Mostrar mensaje de resolución baja si la pantalla es muy pequeña */
+/* Puedes eliminar o dejar la regla para #info, ya no es necesario */
 @media (max-width: 400px), (max-height: 400px) {
 	#compatible {
 		display: block !important;
